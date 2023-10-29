@@ -15,19 +15,19 @@ public class C19_CaesarCipher {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the text: ");
-        String text = scanner.nextLine();
+        System.out.print("Please enter a text for encryption: ");
+        String input = scanner.nextLine();
 
-        System.out.print("Enter the amount of shift: ");
+        System.out.print("Please enter the amount of shift: ");
         int shift = scanner.nextInt();
 
-        String encryptedText = caesarCipher(text, shift);
+        String output = caesar(input, shift);
 
-        System.out.println("Encrypted Text: " + encryptedText);
+        System.out.println("The encrypted version of your initial text: " + output);
 
     }
 
-    public static String caesarCipher(String text, int shift) {
+    public static String caesar(String text, int shift) {
         String encryptedText = "";
         for (int i = 0; i < text.length(); i++) {
             char chr = text.charAt(i);
