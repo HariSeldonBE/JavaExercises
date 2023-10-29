@@ -8,95 +8,45 @@ public class Runner {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Geometrik Şekil Seçiniz:");
-            System.out.println("1. Çember");
-            System.out.println("2. Dikdörtgen");
-            System.out.println("3. Kare");
-            System.out.println("4. Çıkış");
+            System.out.println("○ ■■■ ■ \t Bir Geometrik Şekil Seçiniz:\t ○ ■■■ ■");
+            System.out.println("○ ○ ○ ○ \t \t \t 1. Çember \t \t \t \t ○ ○ ○ ○");
+            System.out.println("■■■ ■■■ \t \t \t 2. Dikdörtgen \t \t \t ■■■ ■■■");
+            System.out.println("■ ■ ■ ■ \t \t \t 3. Kare \t \t \t \t ■ ■ ■ ■");
+            System.out.println("◄ ◄ ◄ ◄ \t \t \t 4. Çıkış\t \t \t \t ► ► ► ►");
 
             try {
                 int secim = scanner.nextInt();
 
                 switch (secim) {
                     case 1:
-                        Cember cember = new Cember(scanner);
-                        boolean devam = true;
-
-                        while (devam) {
-                            cember.talepEtHesaplamaSecimi(scanner);
-
-                            if (cember.hesaplamaSecim == 1) {
-                                System.out.println("Çember Alan: " + cember.alanHesapla() + " cm2");
-                            } else if (cember.hesaplamaSecim == 2) {
-                                System.out.println("Çember Çevre: " + cember.cevreHesapla() + " cm");
-                            } else {
-                                System.out.println("Geçersiz seçim.");
-                            }
-
-                            System.out.println("Başka bir hesaplama yapmak istiyor musunuz? (Evet/Hayır): ");
-                            String cevap = scanner.next();
-                            if (cevap.equalsIgnoreCase("Hayır")) {
-                                devam = false;
-                            }
-                        }
+                        Cember cember = new Cember(scanner); // oluşturulan cember objesi ile Cember classda bulunan değişken ve methodlara ulaşabiliriz
+                        System.out.println("\n");
+                        System.out.println("○ ○ ○  Yarıçapı " + cember.getYaricap() + " cm olan çemberin alanı: " + cember.alan() + " cm² ○ ○ ○");
+                        System.out.println("○ ○ ○  Yarıçapı " + cember.getYaricap() + " cm olan çemberin çevresi: " + cember.cevre() + " cm ○ ○ ○\n\n");
                         break;
                     case 2:
-                        Dikdortgen dikdortgen = new Dikdortgen(scanner);
-                        devam = true;
-
-                        while (devam) {
-                            dikdortgen.talepEtHesaplamaSecimi(scanner);
-
-                            if (dikdortgen.hesaplamaSecim == 1) {
-                                System.out.println("Dikdörtgen Alan: " + dikdortgen.alanHesapla() + " cm2");
-                            } else if (dikdortgen.hesaplamaSecim == 2) {
-                                System.out.println("Dikdörtgen Çevre: " + dikdortgen.cevreHesapla() + " cm");
-                            } else {
-                                System.out.println("Geçersiz seçim.");
-                            }
-
-                            System.out.println("Başka bir hesaplama yapmak istiyor musunuz? (Evet/Hayır): ");
-                            String cevap = scanner.next();
-                            if (cevap.equalsIgnoreCase("Hayır")) {
-                                devam = false;
-                            }
-                        }
+                        Dikdortgen dikdortgen = new Dikdortgen(scanner); // oluşturulan dikdortgen objesi ile Dikdortgen classda bulunan değişken ve methodlara ulaşabiliriz
+                        System.out.println("\n");
+                        System.out.println("■■■ ■■■ Uzunluğu " + dikdortgen.getUzunluk() + " cm genişliği " + dikdortgen.getGenislik() + " cm olan dikdörtgenin alanı: " + dikdortgen.alan() + " cm² ■■■ ■■■");
+                        System.out.println("■■■ ■■■ Uzunluğu " + dikdortgen.getUzunluk() + " cm genişliği " + dikdortgen.getGenislik() + " cm olan dikdörtgenin çevresi: " + dikdortgen.cevre() + " cm ■■■ ■■■\n\n");
                         break;
                     case 3:
-                        Kare kare = new Kare(scanner);
-                        devam = true;
-
-                        while (devam) {
-                            kare.talepEtHesaplamaSecimi(scanner);
-
-                            if (kare.hesaplamaSecim == 1) {
-                                System.out.println("Kare Alan: " + kare.alanHesapla() + " cm2");
-                            } else if (kare.hesaplamaSecim == 2) {
-                                System.out.println("Kare Çevre: " + kare.cevreHesapla() + " cm");
-                            } else {
-                                System.out.println("Geçersiz seçim.");
-                            }
-
-                            System.out.println("Kare için başka bir hesaplama yapmak istiyor musunuz?\n(Evet veya Hayır yazın:)");
-                            String cevap = scanner.next();
-                            if (cevap.equalsIgnoreCase("Hayır")) {
-                                devam = false;
-                            } else if (cevap.equalsIgnoreCase("Evet")) {
-                            }else {
-                                System.out.println("Hatalı giriş yaptınız, lütfen 'Evet' veya 'Hayır' giriniz");
-                                scanner.next();
-                            }
-                        }
+                        Kare kare = new Kare(scanner); // oluşturulan kare objesi ile Kara classın parent classı olan Dikdortgen classda bulunan değişken ve methodlara ulaşabiliriz
+                        System.out.println("\n");
+                        System.out.println("■ ■ ■ ■ Kenar uzunluğu " + kare.getGenislik() + " cm olan karenin alanı: " + kare.alan() + " cm² ■ ■ ■ ■");
+                        System.out.println("■ ■ ■ ■ Kenar uzunluğu " + kare.getUzunluk() + " cm olan karenin çevresi: " + kare.cevre() + " cm ■ ■ ■ ■\n\n");
                         break;
                     case 4:
-                        System.out.println("Programdan çıkılıyor.");
+                        System.out.println("↔ ↔ ↔ ↔ \t \t Programdan çıkılıyor.\t \t ↔ ↔ ↔ ↔");
                         return;
                     default:
-                        System.out.println("Geçersiz seçim.");
+                        System.out.println("\n");
+                        System.out.println("Geçersiz seçim. Lütfen 1 ve 4 arasında sayısal bir seçim yapınız.\n\n");
                         break;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Hatalı giriş. Lütfen sayısal bir değer girin.");
+                System.out.println("\n");
+                System.out.println("* * * Hatalı giriş. Lütfen sayısal bir değer giriniz. * * *\n\n");
                 scanner.next();
             }
         }

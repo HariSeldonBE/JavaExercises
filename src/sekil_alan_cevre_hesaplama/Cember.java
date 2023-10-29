@@ -16,12 +16,22 @@ public class Cember extends Sekil{
     }
 
     @Override
-    public double alanHesapla() {
-        return Math.PI * yaricap * yaricap;
+    public double alan() {
+        return Math.PI * yaricap * yaricap; // Cemberin alanını hesaplamak için Math Classından Pi değerini alabiliriz
+    }
+    /* Parent durumda olan Sekil classı abstract durumdadır
+    ayrıca Sekil classında "alan" ve "cevre" adında 2 adet abstract
+    method tanımlanmıştır. Bu methodların child class durumundaki
+     Cember classında override edilmesi gerekir.
+     */
+    @Override
+    public double cevre() {
+        return 2 * Math.PI * yaricap; // Cemberin çevresini hesaplamak için Math Classından Pi değerini alabiliriz
     }
 
-    @Override
-    public double cevreHesapla() {
-        return 2 * Math.PI * yaricap;
-    }
+    public double getYaricap() {
+        return yaricap;
+    }/* Cember classında private olarak tanımlanan yaricap değerini
+     Runner classda ekrana yazdırdığımız için bir getter method gereklidir.
+     */
 }
