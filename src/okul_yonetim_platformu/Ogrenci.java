@@ -1,5 +1,7 @@
 package okul_yonetim_platformu;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -19,14 +21,15 @@ public class Ogrenci extends Runner implements Islemler {
                 String[] isimArr = isim.split(" ");
                 isim="";
                 for (String each:isimArr) {
-                    isim += each.substring(0, 1).toUpperCase() + each.substring(1).toLowerCase() + " ";
+                    isim += each.substring(0,1).toUpperCase() + each.substring(1).toLowerCase() + " ";
                 }
-                isim = isim.substring(0, isim.length());
+                isim = isim.substring(0, (isim.length()-1));
                 ogrenciValues.put("Isim ", " " + isim);
                 break;
 
             } else {
-                System.out.println("Geçersiz isim girdiniz, lütfen tekrar deneyiniz.");
+                System.out.println("İsim bilgisi hatalı girildi, lütfen tekrar deneyiniz.\n" +
+                                   "Arada bir boşluk bırakarak birden fazla isim girilebilir.");
             }
 
         }
@@ -35,35 +38,32 @@ public class Ogrenci extends Runner implements Islemler {
         while (true) {
             System.out.print("Lütfen öğrencinin soyismini giriniz: ");
             soyisim = scanner.nextLine();
-            if ((soyisim.matches("^[A-Za-zğĞşŞüÜıİöÖçÇ]+( [A-Za-zğĞşŞüÜıİöÖçÇ])*?$"))) {
+            if ((soyisim.matches("^[A-Za-zğĞşŞüÜıİöÖçÇ]+( [A-Za-zğĞşŞüÜıİöÖçÇ]*)?$"))) {
                 String[] soyisimArr = soyisim.split(" ");
                 soyisim="";
                 for (String each:soyisimArr) {
-                    soyisim += each.substring(0).toUpperCase()  + " ";
+                    soyisim += each.toUpperCase()  + " ";
                 }
-                isim = isim.substring(0, isim.length()-1);
-                ogrenciValues.put("Isim ", " " + isim);
+                soyisim = soyisim.substring(0, soyisim.length()-1);
+                ogrenciValues.put("Soyisim ", " " + soyisim);
                 break;
+
+            }else {
+                System.out.println("Soyisim bilgisi hatalı girildi, lütfen tekrar deneyiniz.\n" +
+                                   "Arada bir boşluk bırakarak en fazla iki soyisim girilebilir.");
             }
-//            if (soyisim.isEmpty()) {
-//                System.out.println("Soyisim boş bırakılamaz. Lütfen bir soyisim giriniz: ");
-//            } else if (!isIsimHarf(soyisim)) {
-//                System.out.println("Geçersiz giriş yaptınız. Lütfen tekrar deneyiniz.");
-//            } else {soyisim = soyisim.toUpperCase();
-//                ogrenciValues.put("Soyisim ", " " + soyisim.toUpperCase());
-//                break;
-//            }
+//
         }
 
-
         // Kimlik No Bilgisi Girişi
+
         while (true) {
             System.out.print("Lütfen öğrencinin kimlik numarsını rakamsal ve 11 haneli olarak giriniz: ");
             kimlikNoStr = scanner.nextLine();
 
-            if (kimlikNoStr.length() == 11 && kimlikNoStr.matches("[0-9]+")) {
-                KimlikNo = Long.parseLong(kimlikNoStr);
-                ogrenciValues.put("Kimlik No ", " " + KimlikNo);
+            if (kimlikNoStr.length() == 3 && kimlikNoStr.matches("[0-9]+") && !(kimlikNoStr.startsWith("0"))) {
+                kimlikNo = Long.parseLong(kimlikNoStr);
+                ogrenciValues.put("Kimlik No ", " " + kimlikNo);
                 break;
             } else {
                 System.out.println("Kimlik numarası 11 haneli ve rakamlardan oluşmalıdır.");
@@ -85,41 +85,56 @@ public class Ogrenci extends Runner implements Islemler {
             }
         }
 
-
+        // Sınıf Bilgisi Girişi
 
         System.out.print("Lütfen öğrencinin sınıfını giriniz: ");
-        sinif = scanner.nextLine().trim();
+        sinif = scanner.nextLine();
         ogrenciValues.put("Sinıf "," " + sinif);
 
+        // Kayıt Tarihi Bilgisi Girişi
 
-        // kayitTarihi = LocalDate.now();
         ogrenciValues.put("Kayıt Tarihi "," " + kayitTarihi);
 
-        System.out.println("Öğrenciye verilen yeni okul numarası: " + numara );
+        // Öğrenci Numarası Bilgisi Girişi - Dış Map Key
+
         ogrenciMap.put(numara, ogrenciValues);
-        System.out.println(isim + " " + soyisim + " isimli öğrenci, " + numara + " okul numarası ile " + sinif + ". sınıfa " + kayitTarihi + " tarihinde kaydedilmiştir.");
+        beklemeEkrani();
+        System.out.println("\n");
+        System.out.println(isim + " " + soyisim + " isimli öğrenci,\n" +
+                           numara + " okul numarası ile \n" +
+                           sinif + ". sınıfa kaydedilmiştir.\n" +
+                           "Kayıt Tarihi: " + kayitTarihi);
+        System.out.println("\n");
         numara += 1;
-        islemlerMenu();
+        System.out.println("ÖĞRENCİ İŞLEMLERİ MENÜSÜNE GERİ YÖNLENDİRİLİYORSUNUZ\n\n");
+        System.out.println("\t\t\t\t\tÖĞRENCİ İŞLEMLERİ\n");
+
     }
 
     @Override
     public void arama() {
         System.out.println("ogrenci arama");
-        islemlerMenu();
+        System.out.println("\n\nÖĞRENCİ İŞLEMLERİ MENÜSÜNE GERİ YÖNLENDİRİLİYORSUNUZ\n\n");
+        System.out.println("\t\t\t\t\tÖĞRENCİ İŞLEMLERİ\n");
+
     }
 
     @Override
     public void listeleme() {
 
+        System.out.println(ogrenciMap.keySet());
+        System.out.println(Arrays.toString(ogrenciValues.toString().split(" ")));
+        System.out.println("\n\nÖĞRENCİ İŞLEMLERİ MENÜSÜNE GERİ YÖNLENDİRİLİYORSUNUZ\n\n");
+        System.out.println("\t\t\t\t\tÖĞRENCİ İŞLEMLERİ\n");
 
-        System.out.println(ogrenciMap.values());
-        islemlerMenu();
     }
 
     @Override
     public void silme() {
         System.out.println("ogrenci silme");
-        islemlerMenu();
+        System.out.println("\n\nÖĞRENCİ İŞLEMLERİ MENÜSÜNE GERİ YÖNLENDİRİLİYORSUNUZ\n\n");
+        System.out.println("\t\t\t\t\tÖĞRENCİ İŞLEMLERİ\n");
+
     }
 }
 /*    protected static void islemSecim() {
