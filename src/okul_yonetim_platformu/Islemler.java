@@ -1,11 +1,15 @@
-package sekil_alan_cevre_hesaplama;
+package okul_yonetim_platformu;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+public interface Islemler {
+    Ogrenci ogrenciIslemleri = new Ogrenci();
+    Ogretmen ogretmenIslemleri = new Ogretmen();
 
-public abstract class Sekil {
-
-    protected static void beklemeEkrani() {
+    void ekleme ();
+    void arama ();
+    void listeleme ();
+    void silme ();
+}
+/* protected static void beklemeEkrani() {
         // Her işlemden sonra 5 saniye bekleme süresi
         try {
             Thread.sleep(400);
@@ -23,13 +27,4 @@ public abstract class Sekil {
             // İstisna işleme
             e.printStackTrace();
         }
-    }
-
-
-
-
-    /* Sekil classı abstract olarak tanımlanmıştır aşağıda tanımlanan
-        abstart methodların child classlarda override edilmesi gerekir.*/
-    public abstract double alan();
-    public abstract double cevre();
-}
+    }*/

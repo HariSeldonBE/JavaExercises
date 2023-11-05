@@ -8,14 +8,21 @@ public class Dikdortgen extends Sekil{
     private double genislik;
 
     public Dikdortgen(Scanner scanner) {
-        try {
-            System.out.print("Dikdörtgenin uzunluğunu cm olarak girin: ");
-            uzunluk = scanner.nextDouble();
-            System.out.print("Dikdörtgenin genişliğini cm olarak girin: ");
-            genislik = scanner.nextDouble();
-        } catch (InputMismatchException e) {
-            System.out.println("Hatalı giriş. Lütfen sayısal bir değer girin.");
-        }
+            try {
+                System.out.print("Dikdörtgenin uzunluğunu cm olarak girin: ");
+                uzunluk = scanner.nextDouble();
+                System.out.print("Dikdörtgenin genişliğini cm olarak girin: ");
+                genislik = scanner.nextDouble();
+                Sekil.beklemeEkrani();
+                System.out.println("■■■ ■■■ Uzunluğu " + uzunluk + " cm genişliği " + genislik + " cm olan dikdörtgenin alanı: " + alan() + " cm² ■■■ ■■■");
+                System.out.println("■■■ ■■■ Uzunluğu " + uzunluk + " cm genişliği " + genislik + " cm olan dikdörtgenin çevresi: " + cevre() + " cm ■■■ ■■■\n\n");
+                System.out.println("\t\t******\t\t\t Lütfen bekleyiniz\t\t\t ******");
+                System.out.println("\t\t******\t Ana menüye yönlendiriliyorsunuz\t ******");
+                Sekil.beklemeEkrani();
+            } catch (InputMismatchException e) {
+                System.out.println("Hatalı giriş. Lütfen sayısal bir değer girin.");
+                scanner.next();
+            }
     }
 
     public Dikdortgen() {
