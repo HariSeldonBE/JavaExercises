@@ -61,7 +61,7 @@ public class Ogrenci extends Runner implements Islemler {
             System.out.print("Lütfen öğrencinin kimlik numarsını rakamsal ve 11 haneli olarak giriniz: ");
             kimlikNoStr = scanner.nextLine();
 
-            if (kimlikNoStr.length() == 3 && kimlikNoStr.matches("[0-9]+") && !(kimlikNoStr.startsWith("0"))) {
+            if (kimlikNoStr.length() == 11 && kimlikNoStr.matches("[0-9]+") && !(kimlikNoStr.startsWith("0"))) {
                 kimlikNo = Long.parseLong(kimlikNoStr);
                 ogrenciValues.put("Kimlik No ", " " + kimlikNo);
                 break;
